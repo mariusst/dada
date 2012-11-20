@@ -7,7 +7,7 @@ $xpath = new DOMXPath($dom);
 $nodes = $xpath->query($_GET['xpath']);
 
 //Extract and display the document fragment!
-if (preg_match ("/^.*\[\d\]$/", $_GET['xpath'])) {
+if (preg_match ("/^.*\[\d\]$/", $_GET['xpath']) || preg_match ("/^\/html\/\/body\/(\/.*\/)?/", $_GET['xpath'])) {
 	//Fix the urls!
 	$head = $dom->getElementsByTagName('head');
 	$url_base = $dom->createTextNode('<base href="'.$_GET['url'].'" />');
@@ -17,8 +17,9 @@ if (preg_match ("/^.*\[\d\]$/", $_GET['xpath'])) {
 	}
 			
 	//Build the page!
-	//This can be better: the parents of the selected fragment are not present
-	//so their css inherited by the elements of the selected fragment are not present in the final page
+	//This can be better: the parents of the selected fragment are not included
+        //so their css inherited by the elements of the selected fragment don't applay to the final page;
+        //the same with the scripts.
 	echo '<html>';
 	echo htmlspecialchars_decode($dom->saveHtml($e));
 	echo '<body>';
