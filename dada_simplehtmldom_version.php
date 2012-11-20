@@ -18,15 +18,4 @@ else {
 		echo '<mark>'.$e.$f->outertext.'</mark>';
 }
 
-//add to each elemnt the display=hidden atribute eccept the elemnt queried.
-//if (strlen($html->find($z)->plaintext)>0) {}
 ?>
-
-<!--
-<form action="" method="get">
-   <input name="page" type="hidden" />
-   <input name="element" value="Enter a string!" />
-   <input name="number" value="Enter the number of the counted html element!" />
-   <input type="submit" value="Submit" />
-</form>
--->
