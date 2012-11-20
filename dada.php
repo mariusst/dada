@@ -1,6 +1,6 @@
 <?php
 
-//Preview the the possible document fragments using an xpath querry for 
+//Preview the possible document fragments using an xpath query for 
 //particular block elements like <p> or <div> that might hold the text you need extracted
 $dom = new DOMDocument;
 $dom->loadHTMLfile($_GET['url']);
