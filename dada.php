@@ -18,7 +18,7 @@ if (preg_match ("/^.*\[\d\]$/", $_GET['xpath'])) {
 			
 	//Build the page!
 	//This can be better: the parents of the selected fragment are not present
-	//so their css inherited by the elements from the selected fragment 
+	//so their css inherited by the elements of the selected fragment are not present in the final page
 	echo '<html>';
 	echo htmlspecialchars_decode($dom->saveHtml($e));
 	echo '<body>';
