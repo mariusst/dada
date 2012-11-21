@@ -7,7 +7,7 @@ $xpath = new DOMXPath($dom);
 $nodes = $xpath->query($_GET['xpath']);
 
 //Extract and display the document fragment!
-if (preg_match ("/^.*\[\d\]$/", $_GET['xpath']) || preg_match ("/^\/html\/\/body\/(\/.*\/)?/", $_GET['xpath'])) {
+if (preg_match ("/^\/html\/\/body\/(\/.*\/)?\[\d\]$/", $_GET['xpath']) || preg_match ("/^\/html\/\/body\/(\/.*\/)?/", $_GET['xpath'])) {
 	//Fix the urls!
 	$head = $dom->getElementsByTagName('head');
 	$url_base = $dom->createTextNode('<base href="'.$_GET['url'].'" />');
