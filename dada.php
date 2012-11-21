@@ -6,7 +6,7 @@ $dom->loadHTMLfile($_GET['url']);
 $xpath = new DOMXPath($dom);
 $nodes = $xpath->query($_GET['xpath']);
 
-//Extract and display the document fragment!
+//Extract and display the document fragment! Here xpath parameter must be absolute path.
 if (preg_match ("/^\/html\/\/body\/(\/.*\/)?\[\d\]$/", $_GET['xpath']) || preg_match ("/^\/html\/\/body\/(\/.*\/)?/", $_GET['xpath'])) {
 	//Fix the urls!
 	$head = $dom->getElementsByTagName('head');
