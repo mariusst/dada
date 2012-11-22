@@ -10,7 +10,7 @@ $nodes = $xpath->query($_GET['xpath']);
 if (preg_match ("/^\/html\/\/body\/(\/.*\/)?\[\d\]$/", $_GET['xpath']) || preg_match ("/^\/html\/\/body\/(\/.*\/)?/", $_GET['xpath'])) {
 	//Fix the urls!
 	$head = $dom->getElementsByTagName('head');
-	$url_base = $dom->createTextNode('<base href="'.$_GET['url'].'" />');
+	$url_base = $dom->createTextNode('<base href="' . preg_replace('/^(http.+\.\w{2,}\/).*/', '$1', $_GET['url']) . '" />');
 		
 	foreach($head as $e) {
 		$e->appendChild($url_base);
