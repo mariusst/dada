@@ -1,23 +1,27 @@
 <?php
 
+//Get the url query string
 $dom = new DOMDocument;
 $dom->loadHTMLfile($_GET['url']);
 
+//Get the xpath query string
 $xpath = new DOMXPath($dom);
 $nodes = $xpath->query($_GET['xpath']);
 
-//Extract and display the document fragment! Here xpath parameter must be absolute path.
-if (preg_match ("/^\/html\/\/body\/(\/.*\/)?\[\d\]$/", $_GET['xpath']) || preg_match ("/^\/html\/\/body\/(\/.*\/)?/", $_GET['xpath'])) {
+//Extract and display the document fragment! Here xpath query must be absolute path.
+if (preg_match ("/^\/html\/\/body\/(\/.*\/)+\[\d\]$/", $_GET['xpath']) || preg_match ("/^\/html\/\/body\/(\/.*\/)+/", $_GET['xpath'])) {
 	//Fix the urls!
 	$head = $dom->getElementsByTagName('head');
 	$url_base = $dom->createTextNode('<base href="' . preg_replace('/^(http.+\.\w{2,}\/).*/', '$1', $_GET['url']) . '" />');	
 	foreach($head as $e) {
 		$e->appendChild($url_base);
 	}
-	//find script and style (TODO) elements inside body
+	
+	//Find script and style (TODO) elements inside body
 	foreach($dom as $f) {
 		$f->getElementsByTagName('script');
 	}
+	
 	//Build the page!
 	//This can be better: the parents of the selected fragment are not included
         //so their css inherited by the elements of the selected fragment don't applay to the final page;
@@ -28,7 +32,6 @@ if (preg_match ("/^\/html\/\/body\/(\/.*\/)?\[\d\]$/", $_GET['xpath']) || preg_m
 	foreach($nodes as $g) {
 		echo $dom->saveHtml($g);
 	}
-
 	echo $dom->saveHtml($f);
 	echo '</body>';
 	echo '</html>';
