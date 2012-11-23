@@ -18,7 +18,8 @@ if (preg_match ("/^\/html\/\/body\/(\/.*\/)+\[\d\]$/", $_GET['xpath']) || preg_m
 	}
 	
 	//Find script and style (TODO) elements inside body
-	foreach($dom as $f) {
+	$body = $dom->getElementsByTagName('body');
+	foreach($body as $f) {
 		$f->getElementsByTagName('script');
 	}
 	
@@ -37,8 +38,9 @@ if (preg_match ("/^\/html\/\/body\/(\/.*\/)+\[\d\]$/", $_GET['xpath']) || preg_m
 	echo '</html>';
 }
 
-//Preview the possible document fragments using an simple xpath query for particular block
-//elements like <p> or <div> that might hold the fragment you need extracted. Copy/paste the absolute xpath and reload the page
+//Preview the possible document fragments using a simple, relative xpath query for particular
+//elements like <p> or <div> that might hold the fragment you need extracted (something like '//p' will do).
+//Copy/paste the absolute xpath and reload the page.
 //From the user point of view this is the first operation to be made.
 else {
 	foreach($nodes as $e) {
