@@ -32,12 +32,12 @@ $nodes = $xpath->query($_GET['xpath']);
 if (preg_match ("/^\/html\/body(\/.+)*\/\[\d\]$/", $_GET['xpath']) || preg_match ("/^\/html\/body(\/.+)*$/", $_GET['xpath'])) {	
 	//Remove body and all its children
 	$html = $dom->documentElement;
-	$body_old = $html->getElementsByTagName('body')->item(0);
-	$html->removeChild($body_old);
+	$old_body = $html->getElementsByTagName('body')->item(0);
+	$html->removeChild($old_body);
 	//Fix the urls!
 	$head = $html->getElementsByTagName('head')->item(0);
-	$url_base = $dom->createTextNode('<base href="' . preg_replace('/^(http.+\.\w{2,}\/).*/', '$1', $_GET['url']) . '" />');	
-	$head->insertBefore($url_base, $head->firstChild);
+	$base_url = $dom->createTextNode('<base href="' . preg_replace('/^(http.+\.\w{2,}\/).*/', '$1', $_GET['url']) . '" />');	
+	$head->insertBefore($base_url, $head->firstChild);
 	//Create new body element that will hold the fragment from xpath
 	$body = $dom->createElement('body');
 	$html->appendChild($body);
@@ -52,7 +52,7 @@ if (preg_match ("/^\/html\/body(\/.+)*\/\[\d\]$/", $_GET['xpath']) || preg_match
 //From the user point of view this is the first operation to be made.
 else {
 	foreach($nodes as $e) {
-       echo '<mark>' . $e->getNodePath() . '</mark>' . '<br>' . "\n" . $dom->saveHtml($e) . '<br>' . "\n";
+	echo '<mark>' . $e->getNodePath() . '</mark>' . '<br>' . "\n" . $dom->saveHtml($e) . '<br>' . "\n";
 	}
 }
 
