@@ -29,7 +29,7 @@ $xpath = new DOMXPath($dom);
 $nodes = $xpath->query($_GET['xpath']);
 
 //Extract and display the document fragment! Here xpath query must be absolute path.
-if (preg_match ("/^\/html\/body(\/.*)*\/\[\d\]$/", $_GET['xpath']) || preg_match ("/^\/html\/body(\/.*)*$/", $_GET['xpath'])) {	
+if (preg_match ("/^\/html\/body(\/.+)*\/\[\d\]$/", $_GET['xpath']) || preg_match ("/^\/html\/body(\/.+)*$/", $_GET['xpath'])) {	
 	//Remove body and all its children
 	$html = $dom->documentElement;
 	$body_old = $html->getElementsByTagName('body')->item(0);
