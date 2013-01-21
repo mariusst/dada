@@ -12,4 +12,4 @@ to get the absolute xpath, execute something like:
 where "//p" is a simple query that will output all p elements in the document.
 After executing this you will get the content of all p elements and their absolute xpath.
 3. After identifying the absolute xpath of your desired document fragment redo the query string with something like:
-    http://2lab.org/dada.php?url=https://en.wikipedia.org/wiki/Free_software&xpath=/html/body/div[3]/div[3]/div[4]/p[6]
+    http://example.com/dada.php?url=https://en.wikipedia.org/wiki/Free_software&xpath=/html/body/div[3]/div[3]/div[4]/p[6]
