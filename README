@@ -2,7 +2,7 @@ This is the Dada Scissors. A simple PHP script to extract document fragments for
 
 HOW TO USE IT?
 
-There are 2 parameters that need to be feed to the script: the url of the source page
+There are 2 parameters that need to be fed to the script: the url of the source page
 and the absolute xpath with the location of the desired fragment.
 
 1. Put this script in a location where your web server has access and can execute it.
